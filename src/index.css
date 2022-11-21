@@ -88,20 +88,3 @@ figcaption {
 .can-move:hover {
   background-color: var(--bg);
 }
-
-.caption-clone {
-  box-sizing: border-box;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  background-color: var(--active-clone);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.caption-clone.stuck {
-  background-color: var(--bg);
-  border: 2px solid var(--prison);
-  color: var(--prison);
-}
