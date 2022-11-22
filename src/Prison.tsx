@@ -1,19 +1,13 @@
 import React from 'react';
 import { className, curry2, Pos, range } from './tools';
-import {
-  state0,
-  reducer,
-  selectClones,
-  selectCloneAt,
-  moveClone,
-} from './state';
+import { StateContext, selectClones, selectCloneAt, moveClone } from './state';
 
 export interface PrisonProps {
   side: number;
 }
 
 const Prison: React.FC<PrisonProps> = ({ side }) => {
-  const [state, dispatch] = React.useReducer(reducer, state0);
+  const { state, dispatch } = React.useContext(StateContext);
   const cells = range(0, side * side)
     .map(computePos(side))
     .map(pos => {
@@ -25,8 +19,8 @@ const Prison: React.FC<PrisonProps> = ({ side }) => {
     display: 'grid',
     gridTemplateRows: `repeat(${side}, 1fr)`,
     gridTemplateColumns: `repeat(${side}, 1fr)`,
-    width: '600px',
-    height: '600px',
+    width: '540px',
+    height: '540px',
   };
 
   return (

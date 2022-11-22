@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Fira Code';
+  src: url('../public/FiraCode-Regular.ttf');
+}
+
 :root {
   --bg: #f0f0f0;
   --prison: #deab76;
@@ -8,7 +13,7 @@
 html {
   background-color: var(--bg);
   font-size: 14px;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Fira Code', monospace;
 }
 
 html,
@@ -87,4 +92,16 @@ figcaption {
 
 .can-move:hover {
   background-color: var(--bg);
+}
+
+.controls {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5em;
+}
+
+.controls button {
+  cursor: pointer;
+  font-family: inherit;
 }

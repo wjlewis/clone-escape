@@ -1,4 +1,15 @@
+import React from 'react';
 import { Pos, randomId, filterObj } from './tools';
+
+export const StateContext = React.createContext<StateContextInfo>({
+  state: null as any,
+  dispatch: null as any,
+});
+
+export interface StateContextInfo {
+  state: State;
+  dispatch: React.Dispatch<Action>;
+}
 
 export class Clone {
   private pos: Pos;
@@ -32,6 +43,7 @@ export class Clone {
 
 export interface State {
   clones: { [id: string]: Clone };
+  moveCount: number;
 }
 
 export const state0: State = {
@@ -39,10 +51,12 @@ export const state0: State = {
     (clones, c) => ({ ...clones, [c.id]: c }),
     {}
   ),
+  moveCount: 0,
 };
 
 export enum ActionType {
   moveClone = 'MOVE_CLONE',
+  reset = 'RESET',
 }
 
 export interface Action {
@@ -52,6 +66,10 @@ export interface Action {
 
 export function moveClone(id: string): Action {
   return { type: ActionType.moveClone, payload: { id } };
+}
+
+export function reset(): Action {
+  return { type: ActionType.reset };
 }
 
 export function reducer(state: State, action: Action): State {
@@ -70,8 +88,11 @@ export function reducer(state: State, action: Action): State {
           ...filterObj(state.clones, cId => cId !== id),
           ...newClones,
         },
+        moveCount: state.moveCount + 1,
       };
     }
+    case ActionType.reset:
+      return state0;
     default:
       return state;
   }

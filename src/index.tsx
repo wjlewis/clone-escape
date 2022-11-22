@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Prison from './Prison';
+import App from './App';
 import './index.css';
 
 const root = ReactDOM.createRoot(
@@ -12,7 +12,7 @@ root.render(
     <article>
       <h1>Escape of the Clones</h1>
       <figure>
-        <Prison side={12} />
+        <App />
         <figcaption>Can the clones escape?</figcaption>
       </figure>
     </article>
